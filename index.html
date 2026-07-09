@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apex Visuals | Fotografie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="assets/favicon/favicon.png" />
+    <style>
+        /* ============================================
+               RESET & BASE
+            ============================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #f5f5f7;
+            --color-bg-dark: #1d1d1f;
+            --color-text: #1d1d1f;
+            --color-text-secondary: #86868b;
+            --color-accent: #c4a882;
+            --color-accent-hover: #b3977a;
+            --color-accent-glow: rgba(196, 168, 130, 0.15);
+            --color-card-bg: #ffffff;
+            --color-border: #d2d2d7;
+            --radius: 0.75rem;
+            --radius-pill: 9999px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            --transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-family);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        /* ============================================
+               UTILITY
+            ============================================ */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ============================================
+               ANIMATIONS
+            ============================================ */
+        @keyframes rise-in {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes nav-enter {
+            from {
+                opacity: 0;
+                transform: translateY(-12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes footer-enter {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes footer-col-in {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                box-shadow: 0 0 8px rgba(196, 168, 130, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(196, 168, 130, 0.6);
+            }
+        }
+
+        .animate-in {
+            opacity: 0;
+            animation: rise-in 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animate-in {
+                opacity: 1;
+                animation: none;
+            }
+            .header,
+            .logo,
+            .card,
+            .contact p,
+            .footer,
+            .footer-col {
+                opacity: 1;
+                animation: none;
+            }
+        }
+
+        /* ============================================
+               HEADER
+            ============================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 1.5rem;
+            background: rgba(245, 245, 247, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(210, 210, 215, 0.3);
+            animation: nav-enter 1600ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            transition: color var(--transition);
+            animation: rise-in 1600ms 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .logo:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--color-text);
+        }
+
+        .nav-link-cta {
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 0.45rem 1.25rem;
+            border-radius: var(--radius-pill);
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: background var(--transition), transform var(--transition);
+        }
+
+        .nav-link-cta:hover {
+            background: var(--color-accent);
+            color: var(--color-text);
+            transform: scale(0.97);
+        }
+
+        /* ============================================
+               HERO — KOMPAKT
+            ============================================ */
+        .hero {
+            padding: 7rem 1.5rem 3rem;
+            background: var(--color-bg-dark);
+            color: #f5f5f7;
+        }
+
+        .hero .container {
+            max-width: 800px;
+            padding: 0;
+        }
+
+        .hero .label {
+            color: rgba(245, 245, 247, 0.4);
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            margin-bottom: 0.5rem;
+            animation-delay: 600ms;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 3.6rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+            animation-delay: 840ms;
+        }
+
+        .hero h1 .accent {
+            color: var(--color-accent);
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            max-width: 500px;
+            color: rgba(245, 245, 247, 0.65);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            animation-delay: 1080ms;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            animation-delay: 1320ms;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.75rem;
+            border-radius: var(--radius-pill);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: background var(--transition), color var(--transition), transform var(--transition);
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-bg-dark);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-accent-hover);
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #f5f5f7;
+            border: 1.5px solid rgba(245, 245, 247, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(245, 245, 247, 0.05);
+            border-color: rgba(245, 245, 247, 0.3);
+            transform: scale(0.97);
+        }
+
+        /* ============================================
+               SERVICES — mit visueller Verfügbarkeit
+            ============================================ */
+        .services {
+            padding: 3rem 1.5rem 4rem;
+            background: var(--color-bg);
+        }
+
+        .services .container {
+            max-width: 1050px;
+        }
+
+        .section-heading {
+            margin-bottom: 2rem;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--color-text);
+            line-height: 1.2;
+            margin-top: 0.5rem;
+        }
+
+        .section-heading .label {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--color-text-secondary);
+        }
+
+        .section-heading.animate-in {
+            animation-delay: 1560ms;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        /* ===== BASIS CARD ===== */
+        .card {
+            background: var(--color-card-bg);
+            border-radius: var(--radius);
+            padding: 1.75rem 1.5rem;
+            transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition), border-color var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 2px solid var(--color-border);
+            min-height: 320px;
+            opacity: 0;
+            animation: rise-in 1800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+            position: relative;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 1740ms;
+        }
+        .card:nth-child(2) {
+            animation-delay: 1920ms;
+        }
+        .card:nth-child(3) {
+            animation-delay: 2100ms;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* ===== NICHT VERFÜGBAR — KOMPLETT AUSGEGRAUT ===== */
+        .card-off {
+            opacity: 0.5;
+            border-color: #d5d5d8;
+            background: #e8e8ea;
+            filter: grayscale(0.8);
+        }
+
+        .card-off:hover {
+            transform: none;
+            box-shadow: none;
+            cursor: default;
+        }
+
+        .card-off * {
+            color: #8a8a8f !important;
+        }
+
+        .card-off .card-label {
+            color: #8a8a8f !important;
+        }
+
+        .card-off h3 {
+            color: #8a8a8f !important;
+        }
+
+        .card-off p {
+            color: #8a8a8f !important;
+        }
+
+        .card-off .price {
+            color: #8a8a8f !important;
+        }
+
+        .card-off .price small {
+            color: #8a8a8f !important;
+        }
+
+        .card-off .badge {
+            background: #d0d0d3 !important;
+            color: #7a7a7f !important;
+        }
+
+        .card-off .availability-dot {
+            background: #9a9a9f !important;
+            box-shadow: none !important;
+            animation: none !important;
+        }
+
+        /* ===== VERFÜGBAR — goldener Akzent ===== */
+        .card-on {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 1px var(--color-accent), 0 8px 32px var(--color-accent-glow);
+            background: var(--color-card-bg);
+            opacity: 1;
+            filter: none;
+        }
+
+        .card-on:hover {
+            box-shadow: 0 0 0 1px var(--color-accent), 0 16px 48px rgba(196, 168, 130, 0.2);
+        }
+
+        .card-on .card-label {
+            color: var(--color-accent);
+        }
+
+        .card-on .badge {
+            background: rgba(196, 168, 130, 0.15);
+            color: var(--color-accent);
+        }
+
+        .card-on .availability-dot {
+            background: var(--color-accent);
+            box-shadow: 0 0 12px rgba(196, 168, 130, 0.4);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        /* Verfügbarkeits-Indikator (kleiner Punkt oben rechts) */
+        .card .availability-dot {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: background var(--transition), box-shadow var(--transition);
+        }
+
+        .card .card-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.4rem;
+            transition: color var(--transition);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+            transition: color var(--transition);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            flex: 1;
+            transition: color var(--transition);
+        }
+
+        .card .price {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--color-text);
+            margin-top: 0.25rem;
+            transition: color var(--transition);
+        }
+
+        .card .price small {
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            padding: 0.3rem 0.8rem;
+            border-radius: var(--radius-pill);
+            margin-top: 0.75rem;
+            align-self: flex-start;
+            background: #f0f0f2;
+            color: var(--color-text-secondary);
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .badge .badge-icon {
+            display: inline-block;
+            margin-right: 4px;
+        }
+
+        .badge-on .badge-icon {
+            color: var(--color-accent);
+        }
+
+        /* ============================================
+               CONTACT
+            ============================================ */
+        .contact {
+            padding: 4rem 1.5rem;
+            background: var(--color-bg-dark);
+            color: #f5f5f7;
+            text-align: center;
+        }
+
+        .contact .container {
+            max-width: 600px;
+        }
+
+        .contact .section-heading h2 {
+            color: #f5f5f7;
+        }
+
+        .contact .section-heading .label {
+            color: rgba(245, 245, 247, 0.35);
+        }
+
+        .contact .section-heading.animate-in {
+            animation-delay: 2280ms;
+        }
+
+        .contact p {
+            font-size: 1rem;
+            color: rgba(245, 245, 247, 0.65);
+            line-height: 1.8;
+            opacity: 0;
+            animation: rise-in 1800ms 2460ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .contact a {
+            color: var(--color-accent);
+            font-weight: 500;
+            border-bottom: 1px solid rgba(196, 168, 130, 0.25);
+            transition: border-color var(--transition), color var(--transition);
+        }
+
+        .contact a:hover {
+            color: var(--color-accent-hover);
+            border-color: var(--color-accent);
+        }
+
+        /* ============================================
+               LEGAL PAGES
+            ============================================ */
+        .legal-page {
+            padding: 7rem 1.5rem 4rem;
+            background: var(--color-bg);
+            min-height: 60vh;
+        }
+
+        .legal-page .container {
+            max-width: 920px;
+        }
+
+        .legal-page h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-page .meta {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .legal-page .legal-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .legal-page .legal-block h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .legal-page .legal-block p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .legal-page .legal-block a {
+            color: var(--color-accent);
+            border-bottom: 1px solid rgba(196, 168, 130, 0.25);
+            transition: border-color var(--transition), color var(--transition);
+        }
+
+        .legal-page .legal-block a:hover {
+            color: var(--color-accent-hover);
+            border-color: var(--color-accent);
+        }
+
+        .legal-page .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            transition: color var(--transition);
+        }
+
+        .legal-page .back-link:hover {
+            color: var(--color-text);
+        }
+
+        .legal-page .back-link::before {
+            content: '← ';
+        }
+
+        /* ============================================
+               HIDE/SHOW LOGIC
+            ============================================ */
+        .page-hidden {
+            display: none !important;
+        }
+
+        /* ============================================
+               FOOTER
+            ============================================ */
+        .footer {
+            background: var(--color-bg-dark);
+            padding: 3rem 1.5rem 1.5rem;
+            border-top: 1px solid rgba(245, 245, 247, 0.06);
+            animation: footer-enter 1800ms 2640ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .footer .container {
+            max-width: 1050px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(245, 245, 247, 0.06);
+        }
+
+        .footer-col {
+            opacity: 0;
+            animation: footer-col-in 1600ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .footer-col:nth-child(1) {
+            animation-delay: 2820ms;
+        }
+        .footer-col:nth-child(2) {
+            animation-delay: 3000ms;
+        }
+        .footer-col:nth-child(3) {
+            animation-delay: 3180ms;
+        }
+
+        .footer-col .footer-heading {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: rgba(245, 245, 247, 0.4);
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col .footer-text {
+            font-size: 0.85rem;
+            color: rgba(245, 245, 247, 0.45);
+            line-height: 1.6;
+            max-width: 280px;
+            font-weight: 400;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: rgba(245, 245, 247, 0.5);
+            transition: color var(--transition);
+            font-weight: 400;
+        }
+
+        .footer-links a:hover {
+            color: rgba(245, 245, 247, 0.8);
+        }
+
+        .footer-note {
+            font-size: 0.7rem;
+            color: rgba(245, 245, 247, 0.25);
+            margin-top: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.25rem;
+            font-size: 0.7rem;
+            color: rgba(245, 245, 247, 0.25);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* ============================================
+               RESPONSIVE
+            ============================================ */
+        @media (max-width: 900px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .footer-col .footer-text {
+                max-width: 100%;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .nav-link {
+                font-size: 0.8rem;
+            }
+            .nav-link-cta {
+                padding: 0.3rem 0.9rem;
+                font-size: 0.75rem;
+            }
+            .hero {
+                padding: 6rem 1.5rem 2rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 0.95rem;
+            }
+            .hero-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+            .legal-page {
+                padding: 6rem 1.5rem 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.5rem;
+                min-height: auto;
+            }
+            .section-heading h2 {
+                font-size: 1.4rem;
+            }
+            .contact p {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Focus */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" role="banner">
+        <div class="container">
+            <a href="/" class="logo" aria-label="Apex Visuals – Zur Startseite">Apex Visuals</a>
+            <nav class="nav-links" aria-label="Hauptnavigation">
+                <a href="/#services" class="nav-link">Angebote</a>
+                <a href="/#contact" class="nav-link nav-link-cta">Buchen</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+
+    <!-- ===== STARTSEITE ===== -->
+    <div id="page-home">
+
+        <!-- HERO -->
+        <section id="top" class="hero" aria-labelledby="hero-title">
+            <div class="container">
+                <p class="label animate-in" style="animation-delay:600ms;">Apex Visuals</p>
+                <h1 id="hero-title" class="animate-in" style="animation-delay:840ms;">
+                    Momente.<br />
+                    <span class="accent">Räume.</span> Perspektiven.
+                </h1>
+                <p class="animate-in" style="animation-delay:1080ms;">
+                    Visuelle Inhalte für Personen, Tiere und Immobilien – minimalistisch und auf den Punkt.
+                </p>
+                <div class="hero-actions animate-in" style="animation-delay:1320ms;">
+                    <a href="#services" class="btn btn-primary">Angebote ansehen</a>
+                    <a href="#contact" class="btn btn-secondary">Jetzt buchen</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="services" class="services" aria-labelledby="services-title">
+            <div class="container">
+                <div class="section-heading animate-in" style="animation-delay:1560ms;">
+                    <p class="label">Dienstleistungen</p>
+                    <h2 id="services-title">Was du aktuell buchen kannst</h2>
+                </div>
+
+                <div class="cards-grid">
+
+                    <!-- Karte 1 – NICHT VERFÜGBAR (KOMPLETT AUSGEGRAUT) -->
+                    <article class="card card-off" style="animation-delay:1740ms;">
+                        <span class="availability-dot" aria-hidden="true"></span>
+                        <p class="card-label">Fotoshooting</p>
+                        <h3>Tier-Fotoshooting</h3>
+                        <p>Das Angebot wird vorbereitet, Buchungen sind jedoch aktuell geschlossen.</p>
+                        <p class="price">30,00&nbsp;€ <small>Basistarif</small></p>
+                        <span class="badge">⛔ Nicht verfügbar</span>
+                    </article>
+
+                    <!-- Karte 2 – NICHT VERFÜGBAR (KOMPLETT AUSGEGRAUT) -->
+                    <article class="card card-off" style="animation-delay:1920ms;">
+                        <span class="availability-dot" aria-hidden="true"></span>
+                        <p class="card-label">Fotoshooting</p>
+                        <h3>Personen-Fotoshooting</h3>
+                        <p>Das Angebot wird vorbereitet, Buchungen sind jedoch aktuell geschlossen.</p>
+                        <p class="price">65,00&nbsp;€ <small>Basistarif</small></p>
+                        <span class="badge">⛔ Nicht verfügbar</span>
+                    </article>
+
+                    <!-- Karte 3 – VERFÜGBAR (goldener Akzent) -->
+                    <article class="card card-on" style="animation-delay:2100ms;">
+                        <span class="availability-dot" aria-hidden="true"></span>
+                        <p class="card-label">Drohne</p>
+                        <h3>Immobilienflug für Grundstücke</h3>
+                        <p>Luftbilder, Zoom-In / Zoom-Out Videos für Immobilien-Anzeigen und private Verwendung.</p>
+                        <p class="price">50,00&nbsp;€ <small>Basistarif</small></p>
+                        <span class="badge badge-on">✓ Verfügbar</span>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="contact" aria-labelledby="contact-title">
+            <div class="container">
+                <div class="section-heading animate-in" style="animation-delay:2280ms;">
+                    <p class="label">Kontakt</p>
+                    <h2 id="contact-title">Buche jetzt</h2>
+                </div>
+                <p style="animation: rise-in 1800ms 2460ms cubic-bezier(0.2, 0.8, 0.2, 1) both; opacity:0;">
+                    Schreib mir für Buchungen einfach eine dm auf
+                    <a href="https://www.instagram.com/milan_.1410/" target="_blank" rel="noopener noreferrer">Instagram</a>.
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ===== IMPRESSUM ===== -->
+    <div id="page-impressum" class="legal-page page-hidden">
+        <div class="container">
+            <h1>Impressum</h1>
+            <p class="meta">Angaben gemäß gesetzlicher Vorgaben.</p>
+
+            <div class="legal-block">
+                <h2>Diensteanbieter</h2>
+                <p>
+                    Apex Visuals<br/>
+                    Inhaber: Milan<br/>
+                    Rheinland-Pfalz<br />
+                    Deutschland
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>Kontakt</h2>
+                <p>
+                    Die Kontaktaufnahme erfolgt primär digital.<br />
+                    Instagram: <a href="https://www.instagram.com/milan_.1410/" target="_blank" rel="noopener noreferrer">@milan_.1410</a>
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>Haftungsausschluss (Links)</h2>
+                <p>
+                    Diese Website enthält Links zu externen Netzwerken. Da diese Inhalte außerhalb meines Einflusses liegen, kann ich keine Verantwortung für fremde Inhalte übernehmen. Für die verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>Urheberrecht</h2>
+                <p>
+                    Alle auf dieser Website veröffentlichten Fotos, Videos und Texte sind urheberrechtlich geschützt. Jede Vervielfältigung oder Verwendung bedarf der vorherigen schriftlichen Zustimmung, sofern es gesetzlich nicht anders erlaubt ist.
+                </p>
+            </div>
+
+            <a href="/" class="back-link">Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    <!-- ===== DATENSCHUTZ ===== -->
+    <div id="page-datenschutz" class="legal-page page-hidden">
+        <div class="container">
+            <h1>Datenschutzerklärung</h1>
+            <p class="meta">Zuletzt aktualisiert: 2026</p>
+
+            <div class="legal-block">
+                <h2>1. Datenverarbeitung auf dieser Website</h2>
+                <p>
+                    Diese Website ist als minimalistisches Portfolio konzipiert. Es gibt kein Kontaktformular, kein Nutzerregistrierungssystem und es werden keine aktiven Tracking-Cookies von mir gesetzt.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>2. Server-Log-Dateien</h2>
+                <p>
+                    Der Hosting-Provider dieser Website erhebt und speichert automatisch technische Informationen in sogenannten Server-Log-Dateien, die dein Browser automatisch übermittelt (z. B. IP-Adresse, Datum/Uhrzeit des Aufrufs, Browsertyp). Dies ist für den stabilen und sicheren Betrieb der Website technisch notwendig.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>3. Externe Links &amp; Social Media</h2>
+                <p>
+                    Diese Website enthält Links zu externen Netzwerken. Da diese Inhalte außerhalb meines Einflusses liegen, kann ich keine Verantwortung für fremde Inhalte übernehmen. Für die verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>4. Kontakt</h2>
+                <p>
+                    Bei Fragen zum Datenschutz auf dieser Website kannst du dich direkt über Instagram an Apex Visuals wenden.
+                </p>
+            </div>
+
+            <a href="/" class="back-link">Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    <!-- ===== AGB ===== -->
+    <div id="page-agb" class="legal-page page-hidden">
+        <div class="container">
+            <h1>Allgemeine Geschäftsbedingungen</h1>
+            <p class="meta">Gültig ab: 2026</p>
+
+            <div class="legal-block">
+                <h2>1. Geltungsbereich</h2>
+                <p>
+                    Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Dienstleistungen, Shootings und Produktionen, die von Apex Visuals durchgeführt werden.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>2. Vertragsabschluss</h2>
+                <p>
+                    Anfragen erfolgen über Instagram. Ein verbindlicher Vertrag kommt erst durch die schriftliche Bestätigung eines Angebots oder Termins zustande.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>3. Drohnenflüge &amp; Wetterbedingungen</h2>
+                <p>
+                    Luftaufnahmen mittels Drohnen hängen stark von den Wetterbedingungen ab. Bei starkem Wind, Regen oder gesetzlichen Flugverboten vor Ort behält sich Apex Visuals das Recht vor, den Flug aus Sicherheitsgründen zu verschieben oder abzusagen.<br />
+                    Informiere dich zu Flugverbotszonen <a href="https://fly-safe.dji.com/home" target="_blank" rel="noopener noreferrer">hier</a>.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>4. Nutzungsrechte</h2>
+                <p>
+                    Die erstellten visuellen Inhalte bleiben geistiges Eigentum von Apex Visuals. Dem Kunden wird ein Nutzungsrecht für den privaten bzw. vorab vereinbarten geschäftlichen Gebrauch eingeräumt. Eine kommerzielle Weiterveräußerung an Dritte ist ohne vorherige Absprache nicht gestattet.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>5. Stornierungen</h2>
+                <p>
+                    Terminabsagen durch den Kunden müssen rechtzeitig mitgeteilt werden. Bei sehr kurzfristigen Absagen (weniger als 48 Stunden vor dem Termin) können Ausfallgebühren einbehalten oder in Rechnung gestellt werden.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>6. Haftung</h2>
+                <p>
+                    Apex Visuals haftet nur für Schäden, die nachweislich auf Vorsatz oder grobe Fahrlässigkeit zurückzuführen sind, es sei denn, zwingendes gesetzliches Recht schreibt etwas anderes vor.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>7. Anwendbares Recht</h2>
+                <p>
+                    Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist der gesetzliche Wohnsitz des Kunden, sofern keine verbraucherschutzrechtlichen Bestimmungen dem entgegenstehen.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>8. Anreisekosten</h2>
+                <p>
+                    Anreisekosten sind im Rahmen der jeweiligen Dienstleistung zu tragen. Die genauen Kosten werden vor dem Termin mitgeteilt. Sollten keine Informationen mitgeteilt werden, gilt: &gt;10&nbsp;€ werden vom Kunden übernommen.
+                </p>
+            </div>
+
+            <a href="/" class="back-link">Zurück zur Startseite</a>
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="animation-delay:2820ms;">
+                    <p class="footer-heading">Apex Visuals</p>
+                    <p class="footer-text">
+                        Visuelle Inhalte für Tiere, Personen und Immobilien.
+                    </p>
+                </div>
+                <div class="footer-col" style="animation-delay:3000ms;">
+                    <p class="footer-heading">Navigation</p>
+                    <div class="footer-links">
+                        <a href="/#services">Angebote</a>
+                        <a href="/#contact">Kontakt</a>
+                        <a href="https://www.instagram.com/milan_.1410/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </div>
+                </div>
+                <div class="footer-col" style="animation-delay:3180ms;">
+                    <p class="footer-heading">Rechtliches</p>
+                    <div class="footer-links">
+                        <a href="/?page=impressum">Impressum</a>
+                        <a href="/?page=datenschutz">Datenschutz</a>
+                        <a href="/?page=agb">AGB</a>
+                    </div>
+                    <p class="footer-note">
+                        Drohnenflüge sind wetterabhängig und unterliegen den lokalen Vorgaben.
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Apex Visuals</span>
+                <span>Alle Rechte vorbehalten.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== ROUTING LOGIC ===== -->
+    <script>
+        (function() {
+            const pages = {
+                home: document.getElementById('page-home'),
+                impressum: document.getElementById('page-impressum'),
+                datenschutz: document.getElementById('page-datenschutz'),
+                agb: document.getElementById('page-agb')
+            };
+
+            function showPage(pageId) {
+                Object.keys(pages).forEach(key => {
+                    if (pages[key]) {
+                        pages[key].classList.add('page-hidden');
+                    }
+                });
+
+                if (pages[pageId]) {
+                    pages[pageId].classList.remove('page-hidden');
+                } else {
+                    pages.home.classList.remove('page-hidden');
+                }
+            }
+
+            function getPageFromURL() {
+                const params = new URLSearchParams(window.location.search);
+                return params.get('page') || 'home';
+            }
+
+            showPage(getPageFromURL());
+
+            window.addEventListener('popstate', function() {
+                showPage(getPageFromURL());
+            });
+
+            document.addEventListener('click', function(e) {
+                const link = e.target.closest('a');
+                if (!link) return;
+
+                const href = link.getAttribute('href');
+                if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:')) return;
+
+                try {
+                    const url = new URL(href, window.location.origin);
+                    if (url.pathname === window.location.pathname) {
+                        const page = url.searchParams.get('page');
+                        if (page && pages[page]) {
+                            e.preventDefault();
+                            history.pushState(null, '', href);
+                            showPage(page);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    }
+                } catch (err) {
+                    // ignore
+                }
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
