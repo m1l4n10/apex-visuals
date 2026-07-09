@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apex Visuals | AGB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../../assets/favicon/favicon.png" />
+    <style>
+        /* ============================================
+               RESET & BASE
+            ============================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-bg: #f5f5f7;
+            --color-bg-dark: #1d1d1f;
+            --color-text: #1d1d1f;
+            --color-text-secondary: #86868b;
+            --color-accent: #c4a882;
+            --color-accent-hover: #b3977a;
+            --color-accent-glow: rgba(196, 168, 130, 0.15);
+            --color-card-bg: #ffffff;
+            --color-border: #d2d2d7;
+            --radius: 0.75rem;
+            --radius-pill: 9999px;
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            --transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-family);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        /* ============================================
+               UTILITY
+            ============================================ */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ============================================
+               ANIMATIONS
+            ============================================ */
+        @keyframes rise-in {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes nav-enter {
+            from {
+                opacity: 0;
+                transform: translateY(-12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes footer-enter {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes footer-col-in {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .header,
+            .logo,
+            .footer,
+            .footer-col {
+                opacity: 1;
+                animation: none;
+            }
+        }
+
+        /* ============================================
+               HEADER
+            ============================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 1.5rem;
+            background: rgba(245, 245, 247, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(210, 210, 215, 0.3);
+            animation: nav-enter 1600ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--color-text);
+            transition: color var(--transition);
+            animation: rise-in 1600ms 280ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .logo:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--color-text);
+        }
+
+        .nav-link-cta {
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 0.45rem 1.25rem;
+            border-radius: var(--radius-pill);
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: background var(--transition), transform var(--transition);
+        }
+
+        .nav-link-cta:hover {
+            background: var(--color-accent);
+            color: var(--color-text);
+            transform: scale(0.97);
+        }
+
+        /* ============================================
+               LEGAL PAGE
+            ============================================ */
+        .legal-page {
+            padding: 7rem 1.5rem 4rem;
+            background: var(--color-bg);
+            min-height: 60vh;
+        }
+
+        .legal-page .container {
+            max-width: 920px;
+        }
+
+        .legal-page h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-page .meta {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .legal-page .legal-block {
+            margin-bottom: 2.5rem;
+        }
+
+        .legal-page .legal-block h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .legal-page .legal-block p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+
+        .legal-page .legal-block a {
+            color: var(--color-accent);
+            border-bottom: 1px solid rgba(196, 168, 130, 0.25);
+            transition: border-color var(--transition), color var(--transition);
+        }
+
+        .legal-page .legal-block a:hover {
+            color: var(--color-accent-hover);
+            border-color: var(--color-accent);
+        }
+
+        .legal-page .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            transition: color var(--transition);
+        }
+
+        .legal-page .back-link:hover {
+            color: var(--color-text);
+        }
+
+        .legal-page .back-link::before {
+            content: '← ';
+        }
+
+        /* ============================================
+               FOOTER
+            ============================================ */
+        .footer {
+            background: var(--color-bg-dark);
+            padding: 3rem 1.5rem 1.5rem;
+            border-top: 1px solid rgba(245, 245, 247, 0.06);
+            animation: footer-enter 1800ms 2640ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .footer .container {
+            max-width: 1050px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr;
+            gap: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(245, 245, 247, 0.06);
+        }
+
+        .footer-col {
+            opacity: 0;
+            animation: footer-col-in 1600ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+        }
+
+        .footer-col:nth-child(1) {
+            animation-delay: 2820ms;
+        }
+        .footer-col:nth-child(2) {
+            animation-delay: 3000ms;
+        }
+        .footer-col:nth-child(3) {
+            animation-delay: 3180ms;
+        }
+
+        .footer-col .footer-heading {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: rgba(245, 245, 247, 0.4);
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col .footer-text {
+            font-size: 0.85rem;
+            color: rgba(245, 245, 247, 0.45);
+            line-height: 1.6;
+            max-width: 280px;
+            font-weight: 400;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            font-size: 0.85rem;
+            color: rgba(245, 245, 247, 0.5);
+            transition: color var(--transition);
+            font-weight: 400;
+        }
+
+        .footer-links a:hover {
+            color: rgba(245, 245, 247, 0.8);
+        }
+
+        .footer-note {
+            font-size: 0.7rem;
+            color: rgba(245, 245, 247, 0.25);
+            margin-top: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1.25rem;
+            font-size: 0.7rem;
+            color: rgba(245, 245, 247, 0.25);
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* ============================================
+               RESPONSIVE
+            ============================================ */
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .footer-col .footer-text {
+                max-width: 100%;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 0.8rem 1.5rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .nav-link {
+                font-size: 0.8rem;
+            }
+            .nav-link-cta {
+                padding: 0.3rem 0.9rem;
+                font-size: 0.75rem;
+            }
+            .legal-page {
+                padding: 6rem 1.5rem 3rem;
+            }
+        }
+
+        /* Focus */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" role="banner">
+        <div class="container">
+            <a href="../../" class="logo" aria-label="Apex Visuals – Zur Startseite">Apex Visuals</a>
+            <nav class="nav-links" aria-label="Hauptnavigation">
+                <a href="../../#services" class="nav-link">Angebote</a>
+                <a href="../../#contact" class="nav-link nav-link-cta">Buchen</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main class="legal-page">
+        <div class="container">
+            <h1>Allgemeine Geschäftsbedingungen</h1>
+            <p class="meta">Gültig ab: 2026</p>
+
+            <div class="legal-block">
+                <h2>1. Geltungsbereich</h2>
+                <p>
+                    Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Dienstleistungen, Shootings und Produktionen, die von Apex Visuals durchgeführt werden.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>2. Vertragsabschluss</h2>
+                <p>
+                    Anfragen erfolgen über Instagram. Ein verbindlicher Vertrag kommt erst durch die schriftliche Bestätigung eines Angebots oder Termins zustande.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>3. Drohnenflüge &amp; Wetterbedingungen</h2>
+                <p>
+                    Luftaufnahmen mittels Drohnen hängen stark von den Wetterbedingungen ab. Bei starkem Wind, Regen oder gesetzlichen Flugverboten vor Ort behält sich Apex Visuals das Recht vor, den Flug aus Sicherheitsgründen zu verschieben oder abzusagen.<br />
+                    Informiere dich zu Flugverbotszonen <a href="https://fly-safe.dji.com/home" target="_blank" rel="noopener noreferrer">hier</a>.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>4. Nutzungsrechte</h2>
+                <p>
+                    Die erstellten visuellen Inhalte bleiben geistiges Eigentum von Apex Visuals. Dem Kunden wird ein Nutzungsrecht für den privaten bzw. vorab vereinbarten geschäftlichen Gebrauch eingeräumt. Eine kommerzielle Weiterveräußerung an Dritte ist ohne vorherige Absprache nicht gestattet.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>5. Stornierungen</h2>
+                <p>
+                    Terminabsagen durch den Kunden müssen rechtzeitig mitgeteilt werden. Bei sehr kurzfristigen Absagen (weniger als 48 Stunden vor dem Termin) können Ausfallgebühren einbehalten oder in Rechnung gestellt werden.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>6. Haftung</h2>
+                <p>
+                    Apex Visuals haftet nur für Schäden, die nachweislich auf Vorsatz oder grobe Fahrlässigkeit zurückzuführen sind, es sei denn, zwingendes gesetzliches Recht schreibt etwas anderes vor.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>7. Anwendbares Recht</h2>
+                <p>
+                    Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist der gesetzliche Wohnsitz des Kunden, sofern keine verbraucherschutzrechtlichen Bestimmungen dem entgegenstehen.
+                </p>
+            </div>
+
+            <div class="legal-block">
+                <h2>8. Anreisekosten</h2>
+                <p>
+                    Anreisekosten sind im Rahmen der jeweiligen Dienstleistung zu tragen. Die genauen Kosten werden vor dem Termin mitgeteilt. Sollten keine Informationen mitgeteilt werden, gilt: &gt;10&nbsp;€ werden vom Kunden übernommen.
+                </p>
+            </div>
+
+            <a href="../../" class="back-link">Zurück zur Startseite</a>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="animation-delay:2820ms;">
+                    <p class="footer-heading">Apex Visuals</p>
+                    <p class="footer-text">
+                        Visuelle Inhalte für Tiere, Personen und Immobilien.
+                    </p>
+                </div>
+                <div class="footer-col" style="animation-delay:3000ms;">
+                    <p class="footer-heading">Navigation</p>
+                    <div class="footer-links">
+                        <a href="../../#services">Angebote</a>
+                        <a href="../../#contact">Kontakt</a>
+                        <a href="https://www.instagram.com/milan_.1410/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </div>
+                </div>
+                <div class="footer-col" style="animation-delay:3180ms;">
+                    <p class="footer-heading">Rechtliches</p>
+                    <div class="footer-links">
+                        <a href="../impressum/">Impressum</a>
+                        <a href="../datenschutz/">Datenschutz</a>
+                        <a href="../agb/">AGB</a>
+                    </div>
+                    <p class="footer-note">
+                        Drohnenflüge sind wetterabhängig und unterliegen den lokalen Vorgaben.
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Apex Visuals</span>
+                <span>Alle Rechte vorbehalten.</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -592,83 +592,6 @@
         }
 
         /* ============================================
-               LEGAL PAGES
-            ============================================ */
-        .legal-page {
-            padding: 7rem 1.5rem 4rem;
-            background: var(--color-bg);
-            min-height: 60vh;
-        }
-
-        .legal-page .container {
-            max-width: 920px;
-        }
-
-        .legal-page h1 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 0.5rem;
-        }
-
-        .legal-page .meta {
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-            margin-bottom: 2.5rem;
-        }
-
-        .legal-page .legal-block {
-            margin-bottom: 2.5rem;
-        }
-
-        .legal-page .legal-block h2 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-            color: var(--color-text);
-        }
-
-        .legal-page .legal-block p {
-            color: var(--color-text-secondary);
-            line-height: 1.7;
-        }
-
-        .legal-page .legal-block a {
-            color: var(--color-accent);
-            border-bottom: 1px solid rgba(196, 168, 130, 0.25);
-            transition: border-color var(--transition), color var(--transition);
-        }
-
-        .legal-page .legal-block a:hover {
-            color: var(--color-accent-hover);
-            border-color: var(--color-accent);
-        }
-
-        .legal-page .back-link {
-            display: inline-block;
-            margin-top: 2rem;
-            font-weight: 500;
-            color: var(--color-text-secondary);
-            transition: color var(--transition);
-        }
-
-        .legal-page .back-link:hover {
-            color: var(--color-text);
-        }
-
-        .legal-page .back-link::before {
-            content: '← ';
-        }
-
-        /* ============================================
-               HIDE/SHOW LOGIC
-            ============================================ */
-        .page-hidden {
-            display: none !important;
-        }
-
-        /* ============================================
                FOOTER
             ============================================ */
         .footer {
@@ -813,9 +736,6 @@
                 width: 100%;
                 text-align: center;
             }
-            .legal-page {
-                padding: 6rem 1.5rem 3rem;
-            }
         }
 
         @media (max-width: 480px) {
@@ -854,233 +774,81 @@
 
     <!-- ===== MAIN ===== -->
 
-    <!-- ===== STARTSEITE ===== -->
-    <div id="page-home">
-
-        <!-- HERO -->
-        <section id="top" class="hero" aria-labelledby="hero-title">
-            <div class="container">
-                <p class="label animate-in" style="animation-delay:600ms;">Apex Visuals</p>
-                <h1 id="hero-title" class="animate-in" style="animation-delay:840ms;">
-                    Momente.<br />
-                    <span class="accent">Räume.</span> Perspektiven.
-                </h1>
-                <p class="animate-in" style="animation-delay:1080ms;">
-                    Visuelle Inhalte für Personen, Tiere und Immobilien – minimalistisch und auf den Punkt.
-                </p>
-                <div class="hero-actions animate-in" style="animation-delay:1320ms;">
-                    <a href="#services" class="btn btn-primary">Angebote ansehen</a>
-                    <a href="#contact" class="btn btn-secondary">Jetzt buchen</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- SERVICES -->
-        <section id="services" class="services" aria-labelledby="services-title">
-            <div class="container">
-                <div class="section-heading animate-in" style="animation-delay:1560ms;">
-                    <p class="label">Dienstleistungen</p>
-                    <h2 id="services-title">Was du aktuell buchen kannst</h2>
-                </div>
-
-                <div class="cards-grid">
-
-                    <!-- Karte 1 – NICHT VERFÜGBAR (KOMPLETT AUSGEGRAUT) -->
-                    <article class="card card-off" style="animation-delay:1740ms;">
-                        <span class="availability-dot" aria-hidden="true"></span>
-                        <p class="card-label">Fotoshooting</p>
-                        <h3>Tier-Fotoshooting</h3>
-                        <p>Das Angebot wird vorbereitet, Buchungen sind jedoch aktuell geschlossen.</p>
-                        <p class="price">30,00&nbsp;€ <small>Basistarif</small></p>
-                        <span class="badge">⛔ Nicht verfügbar</span>
-                    </article>
-
-                    <!-- Karte 2 – NICHT VERFÜGBAR (KOMPLETT AUSGEGRAUT) -->
-                    <article class="card card-off" style="animation-delay:1920ms;">
-                        <span class="availability-dot" aria-hidden="true"></span>
-                        <p class="card-label">Fotoshooting</p>
-                        <h3>Personen-Fotoshooting</h3>
-                        <p>Das Angebot wird vorbereitet, Buchungen sind jedoch aktuell geschlossen.</p>
-                        <p class="price">65,00&nbsp;€ <small>Basistarif</small></p>
-                        <span class="badge">⛔ Nicht verfügbar</span>
-                    </article>
-
-                    <!-- Karte 3 – VERFÜGBAR (goldener Akzent) -->
-                    <article class="card card-on" style="animation-delay:2100ms;">
-                        <span class="availability-dot" aria-hidden="true"></span>
-                        <p class="card-label">Drohne</p>
-                        <h3>Immobilienflug für Grundstücke</h3>
-                        <p>Luftbilder, Zoom-In / Zoom-Out Videos für Immobilien-Anzeigen und private Verwendung.</p>
-                        <p class="price">50,00&nbsp;€ <small>Basistarif</small></p>
-                        <span class="badge badge-on">✓ Verfügbar</span>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact" class="contact" aria-labelledby="contact-title">
-            <div class="container">
-                <div class="section-heading animate-in" style="animation-delay:2280ms;">
-                    <p class="label">Kontakt</p>
-                    <h2 id="contact-title">Buche jetzt</h2>
-                </div>
-                <p style="animation: rise-in 1800ms 2460ms cubic-bezier(0.2, 0.8, 0.2, 1) both; opacity:0;">
-                    Schreib mir für Buchungen einfach eine dm auf
-                    <a href="https://www.instagram.com/milan_.1410/" target="_blank" rel="noopener noreferrer">Instagram</a>.
-                </p>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- ===== IMPRESSUM ===== -->
-    <div id="page-impressum" class="legal-page page-hidden">
+    <!-- HERO -->
+    <section id="top" class="hero" aria-labelledby="hero-title">
         <div class="container">
-            <h1>Impressum</h1>
-            <p class="meta">Angaben gemäß gesetzlicher Vorgaben.</p>
-
-            <div class="legal-block">
-                <h2>Diensteanbieter</h2>
-                <p>
-                    Apex Visuals<br/>
-                    Inhaber: Milan<br/>
-                    Rheinland-Pfalz<br />
-                    Deutschland
-                </p>
+            <p class="label animate-in" style="animation-delay:600ms;">Apex Visuals</p>
+            <h1 id="hero-title" class="animate-in" style="animation-delay:840ms;">
+                Momente.<br />
+                <span class="accent">Räume.</span> Perspektiven.
+            </h1>
+            <p class="animate-in" style="animation-delay:1080ms;">
+                Visuelle Inhalte für Personen, Tiere und Immobilien – minimalistisch und auf den Punkt.
+            </p>
+            <div class="hero-actions animate-in" style="animation-delay:1320ms;">
+                <a href="#services" class="btn btn-primary">Angebote ansehen</a>
+                <a href="#contact" class="btn btn-secondary">Jetzt buchen</a>
             </div>
-
-            <div class="legal-block">
-                <h2>Kontakt</h2>
-                <p>
-                    Die Kontaktaufnahme erfolgt primär digital.<br />
-                    Instagram: <a href="https://www.instagram.com/milan_.1410/" target="_blank" rel="noopener noreferrer">@milan_.1410</a>
-                </p>
-            </div>
-
-            <div class="legal-block">
-                <h2>Haftungsausschluss (Links)</h2>
-                <p>
-                    Diese Website enthält Links zu externen Netzwerken. Da diese Inhalte außerhalb meines Einflusses liegen, kann ich keine Verantwortung für fremde Inhalte übernehmen. Für die verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.
-                </p>
-            </div>
-
-            <div class="legal-block">
-                <h2>Urheberrecht</h2>
-                <p>
-                    Alle auf dieser Website veröffentlichten Fotos, Videos und Texte sind urheberrechtlich geschützt. Jede Vervielfältigung oder Verwendung bedarf der vorherigen schriftlichen Zustimmung, sofern es gesetzlich nicht anders erlaubt ist.
-                </p>
-            </div>
-
-            <a href="/" class="back-link">Zurück zur Startseite</a>
         </div>
-    </div>
+    </section>
 
-    <!-- ===== DATENSCHUTZ ===== -->
-    <div id="page-datenschutz" class="legal-page page-hidden">
+    <!-- SERVICES -->
+    <section id="services" class="services" aria-labelledby="services-title">
         <div class="container">
-            <h1>Datenschutzerklärung</h1>
-            <p class="meta">Zuletzt aktualisiert: 2026</p>
-
-            <div class="legal-block">
-                <h2>1. Datenverarbeitung auf dieser Website</h2>
-                <p>
-                    Diese Website ist als minimalistisches Portfolio konzipiert. Es gibt kein Kontaktformular, kein Nutzerregistrierungssystem und es werden keine aktiven Tracking-Cookies von mir gesetzt.
-                </p>
+            <div class="section-heading animate-in" style="animation-delay:1560ms;">
+                <p class="label">Dienstleistungen</p>
+                <h2 id="services-title">Was du aktuell buchen kannst</h2>
             </div>
 
-            <div class="legal-block">
-                <h2>2. Server-Log-Dateien</h2>
-                <p>
-                    Der Hosting-Provider dieser Website erhebt und speichert automatisch technische Informationen in sogenannten Server-Log-Dateien, die dein Browser automatisch übermittelt (z. B. IP-Adresse, Datum/Uhrzeit des Aufrufs, Browsertyp). Dies ist für den stabilen und sicheren Betrieb der Website technisch notwendig.
-                </p>
-            </div>
+            <div class="cards-grid">
 
-            <div class="legal-block">
-                <h2>3. Externe Links &amp; Social Media</h2>
-                <p>
-                    Diese Website enthält Links zu externen Netzwerken. Da diese Inhalte außerhalb meines Einflusses liegen, kann ich keine Verantwortung für fremde Inhalte übernehmen. Für die verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich.
-                </p>
-            </div>
+                <!-- Karte 1 – NICHT VERFÜGBAR -->
+                <article class="card card-off" style="animation-delay:1740ms;">
+                    <span class="availability-dot" aria-hidden="true"></span>
+                    <p class="card-label">Fotoshooting</p>
+                    <h3>Tier-Fotoshooting</h3>
+                    <p>Das Angebot wird vorbereitet, Buchungen sind jedoch aktuell geschlossen.</p>
+                    <p class="price">30,00&nbsp;€ <small>Basistarif</small></p>
+                    <span class="badge">⛔ Nicht verfügbar</span>
+                </article>
 
-            <div class="legal-block">
-                <h2>4. Kontakt</h2>
-                <p>
-                    Bei Fragen zum Datenschutz auf dieser Website kannst du dich direkt über Instagram an Apex Visuals wenden.
-                </p>
-            </div>
+                <!-- Karte 2 – NICHT VERFÜGBAR -->
+                <article class="card card-off" style="animation-delay:1920ms;">
+                    <span class="availability-dot" aria-hidden="true"></span>
+                    <p class="card-label">Fotoshooting</p>
+                    <h3>Personen-Fotoshooting</h3>
+                    <p>Das Angebot wird vorbereitet, Buchungen sind jedoch aktuell geschlossen.</p>
+                    <p class="price">65,00&nbsp;€ <small>Basistarif</small></p>
+                    <span class="badge">⛔ Nicht verfügbar</span>
+                </article>
 
-            <a href="/" class="back-link">Zurück zur Startseite</a>
+                <!-- Karte 3 – VERFÜGBAR -->
+                <article class="card card-on" style="animation-delay:2100ms;">
+                    <span class="availability-dot" aria-hidden="true"></span>
+                    <p class="card-label">Drohne</p>
+                    <h3>Immobilienflug für Grundstücke</h3>
+                    <p>Luftbilder, Zoom-In / Zoom-Out Videos für Immobilien-Anzeigen und private Verwendung.</p>
+                    <p class="price">50,00&nbsp;€ <small>Basistarif</small></p>
+                    <span class="badge badge-on">✓ Verfügbar</span>
+                </article>
+
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ===== AGB ===== -->
-    <div id="page-agb" class="legal-page page-hidden">
+    <!-- CONTACT -->
+    <section id="contact" class="contact" aria-labelledby="contact-title">
         <div class="container">
-            <h1>Allgemeine Geschäftsbedingungen</h1>
-            <p class="meta">Gültig ab: 2026</p>
-
-            <div class="legal-block">
-                <h2>1. Geltungsbereich</h2>
-                <p>
-                    Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Dienstleistungen, Shootings und Produktionen, die von Apex Visuals durchgeführt werden.
-                </p>
+            <div class="section-heading animate-in" style="animation-delay:2280ms;">
+                <p class="label">Kontakt</p>
+                <h2 id="contact-title">Buche jetzt</h2>
             </div>
-
-            <div class="legal-block">
-                <h2>2. Vertragsabschluss</h2>
-                <p>
-                    Anfragen erfolgen über Instagram. Ein verbindlicher Vertrag kommt erst durch die schriftliche Bestätigung eines Angebots oder Termins zustande.
-                </p>
-            </div>
-
-            <div class="legal-block">
-                <h2>3. Drohnenflüge &amp; Wetterbedingungen</h2>
-                <p>
-                    Luftaufnahmen mittels Drohnen hängen stark von den Wetterbedingungen ab. Bei starkem Wind, Regen oder gesetzlichen Flugverboten vor Ort behält sich Apex Visuals das Recht vor, den Flug aus Sicherheitsgründen zu verschieben oder abzusagen.<br />
-                    Informiere dich zu Flugverbotszonen <a href="https://fly-safe.dji.com/home" target="_blank" rel="noopener noreferrer">hier</a>.
-                </p>
-            </div>
-
-            <div class="legal-block">
-                <h2>4. Nutzungsrechte</h2>
-                <p>
-                    Die erstellten visuellen Inhalte bleiben geistiges Eigentum von Apex Visuals. Dem Kunden wird ein Nutzungsrecht für den privaten bzw. vorab vereinbarten geschäftlichen Gebrauch eingeräumt. Eine kommerzielle Weiterveräußerung an Dritte ist ohne vorherige Absprache nicht gestattet.
-                </p>
-            </div>
-
-            <div class="legal-block">
-                <h2>5. Stornierungen</h2>
-                <p>
-                    Terminabsagen durch den Kunden müssen rechtzeitig mitgeteilt werden. Bei sehr kurzfristigen Absagen (weniger als 48 Stunden vor dem Termin) können Ausfallgebühren einbehalten oder in Rechnung gestellt werden.
-                </p>
-            </div>
-
-            <div class="legal-block">
-                <h2>6. Haftung</h2>
-                <p>
-                    Apex Visuals haftet nur für Schäden, die nachweislich auf Vorsatz oder grobe Fahrlässigkeit zurückzuführen sind, es sei denn, zwingendes gesetzliches Recht schreibt etwas anderes vor.
-                </p>
-            </div>
-
-            <div class="legal-block">
-                <h2>7. Anwendbares Recht</h2>
-                <p>
-                    Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist der gesetzliche Wohnsitz des Kunden, sofern keine verbraucherschutzrechtlichen Bestimmungen dem entgegenstehen.
-                </p>
-            </div>
-
-            <div class="legal-block">
-                <h2>8. Anreisekosten</h2>
-                <p>
-                    Anreisekosten sind im Rahmen der jeweiligen Dienstleistung zu tragen. Die genauen Kosten werden vor dem Termin mitgeteilt. Sollten keine Informationen mitgeteilt werden, gilt: &gt;10&nbsp;€ werden vom Kunden übernommen.
-                </p>
-            </div>
-
-            <a href="/" class="back-link">Zurück zur Startseite</a>
+            <p style="animation: rise-in 1800ms 2460ms cubic-bezier(0.2, 0.8, 0.2, 1) both; opacity:0;">
+                Schreib mir für Buchungen einfach eine dm auf
+                <a href="https://www.instagram.com/milan_.1410/" target="_blank" rel="noopener noreferrer">Instagram</a>.
+            </p>
         </div>
-    </div>
+    </section>
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer" role="contentinfo">
@@ -1103,9 +871,9 @@
                 <div class="footer-col" style="animation-delay:3180ms;">
                     <p class="footer-heading">Rechtliches</p>
                     <div class="footer-links">
-                        <a href="/?page=impressum">Impressum</a>
-                        <a href="/?page=datenschutz">Datenschutz</a>
-                        <a href="/?page=agb">AGB</a>
+                        <a href="/legal/impressum/">Impressum</a>
+                        <a href="/legal/datenschutz/">Datenschutz</a>
+                        <a href="/legal/agb/">AGB</a>
                     </div>
                     <p class="footer-note">
                         Drohnenflüge sind wetterabhängig und unterliegen den lokalen Vorgaben.
@@ -1118,67 +886,6 @@
             </div>
         </div>
     </footer>
-
-    <!-- ===== ROUTING LOGIC ===== -->
-    <script>
-        (function() {
-            const pages = {
-                home: document.getElementById('page-home'),
-                impressum: document.getElementById('page-impressum'),
-                datenschutz: document.getElementById('page-datenschutz'),
-                agb: document.getElementById('page-agb')
-            };
-
-            function showPage(pageId) {
-                Object.keys(pages).forEach(key => {
-                    if (pages[key]) {
-                        pages[key].classList.add('page-hidden');
-                    }
-                });
-
-                if (pages[pageId]) {
-                    pages[pageId].classList.remove('page-hidden');
-                } else {
-                    pages.home.classList.remove('page-hidden');
-                }
-            }
-
-            function getPageFromURL() {
-                const params = new URLSearchParams(window.location.search);
-                return params.get('page') || 'home';
-            }
-
-            showPage(getPageFromURL());
-
-            window.addEventListener('popstate', function() {
-                showPage(getPageFromURL());
-            });
-
-            document.addEventListener('click', function(e) {
-                const link = e.target.closest('a');
-                if (!link) return;
-
-                const href = link.getAttribute('href');
-                if (!href || href.startsWith('http') || href.startsWith('#') || href.startsWith('mailto:')) return;
-
-                try {
-                    const url = new URL(href, window.location.origin);
-                    if (url.pathname === window.location.pathname) {
-                        const page = url.searchParams.get('page');
-                        if (page && pages[page]) {
-                            e.preventDefault();
-                            history.pushState(null, '', href);
-                            showPage(page);
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }
-                    }
-                } catch (err) {
-                    // ignore
-                }
-            });
-
-        })();
-    </script>
 
 </body>
 </html>
