@@ -411,15 +411,12 @@
             position: relative;
         }
 
-        .card:nth-child(1) {
-            animation-delay: 1740ms;
-        }
-        .card:nth-child(2) {
-            animation-delay: 1920ms;
-        }
-        .card:nth-child(3) {
-            animation-delay: 2100ms;
-        }
+        /* 5 Cards mit individuellen Verzögerungen */
+        .card:nth-child(1) { animation-delay: 1740ms; }
+        .card:nth-child(2) { animation-delay: 1860ms; }
+        .card:nth-child(3) { animation-delay: 1980ms; }
+        .card:nth-child(4) { animation-delay: 2100ms; }
+        .card:nth-child(5) { animation-delay: 2220ms; }
 
         .card:hover {
             transform: translateY(-3px);
@@ -580,6 +577,95 @@
             color: var(--color-accent);
         }
 
+        /* ===== BESTSELLER-BADGE ===== */
+        .bestseller-badge {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 0.2rem 0.7rem;
+            border-radius: var(--radius-pill);
+            background: rgba(134, 134, 139, 0.12);
+            color: var(--color-text-secondary);
+            margin-left: 0.4rem;
+            vertical-align: middle;
+            border: 1px solid rgba(134, 134, 139, 0.15);
+        }
+
+        .card-on .bestseller-badge {
+            background: rgba(196, 168, 130, 0.12);
+            color: var(--color-accent);
+            border-color: rgba(196, 168, 130, 0.2);
+        }
+
+        .card-off .bestseller-badge {
+            opacity: 0.5;
+        }
+
+        /* ============================================
+               VIDEO SECTION
+            ============================================ */
+        .video-section {
+            padding: 4rem 1.5rem;
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .video-section .container {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .video-section .label {
+            color: var(--color-text-secondary);
+        }
+
+        .video-section h2 {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            color: var(--color-text);
+            line-height: 1.2;
+            margin-top: 0.25rem;
+        }
+
+        .video-section p {
+            color: var(--color-text-secondary);
+            max-width: 500px;
+            margin: 0.5rem auto 1.5rem;
+        }
+
+        .video-link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 2.2rem;
+            border-radius: var(--radius-pill);
+            background: var(--color-bg-dark);
+            color: #f5f5f7;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .video-link-btn:hover {
+            background: var(--color-accent);
+            color: var(--color-bg-dark);
+            transform: scale(0.97);
+            box-shadow: 0 8px 32px rgba(196, 168, 130, 0.25);
+        }
+
+        .video-link-btn svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
         /* ============================================
                CONTACT
             ============================================ */
@@ -624,60 +710,6 @@
         .contact a:hover {
             color: var(--color-accent-hover);
             border-color: var(--color-accent);
-        }
-
-        /* ============================================
-               VIDEO SECTION (nur diese und Footer haben Viewport-Animation)
-            ============================================ */
-        .video-section {
-            padding: 4rem 1.5rem;
-            background: var(--color-bg);
-            border-top: 1px solid var(--color-border);
-        }
-
-        .video-section .container {
-            max-width: 800px;
-            text-align: center;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 */
-            height: 0;
-            overflow: hidden;
-            border-radius: var(--radius);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.05);
-            background: var(--color-bg-dark);
-            margin-top: 1.5rem;
-        }
-
-        .video-wrapper iframe,
-        .video-wrapper video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .video-section .label {
-            color: var(--color-text-secondary);
-        }
-
-        .video-section h2 {
-            font-size: clamp(1.6rem, 3vw, 2.4rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            color: var(--color-text);
-            line-height: 1.2;
-            margin-top: 0.25rem;
-        }
-
-        .video-section p {
-            color: var(--color-text-secondary);
-            max-width: 500px;
-            margin: 0.5rem auto 0;
         }
 
         /* ============================================
@@ -822,6 +854,10 @@
             .contact p {
                 font-size: 0.95rem;
             }
+            .video-link-btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
         /* Focus */
@@ -876,42 +912,83 @@
             <div class="cards-grid">
 
                 <!-- Karte 1 – NICHT VERFÜGBAR -->
-                <article class="card card-off" style="animation-delay:1740ms;">
+                <article class="card card-off">
                     <span class="availability-dot" aria-hidden="true"></span>
                     <p class="card-label">Einzelprodukte</p>
-                    <h3>Air Pics</h3>
-                    <p> + Luftbilder,<br>
-                        + Luftvideos,<br></p>
+                    <h3>Airo 1</h3>
+                    <p> + Sateliten ähnliche Luftbilder,<br>
+                    + Sateliten ähnliche Luftvideos,<br></p>
+                    <p class="price">25,00&nbsp;€ <small>Basistarif</small></p>
+                    <span class="badge">⛔ Zurzeit Nicht verfügbar</span>
+                </article>
+
+                <!-- Karte 2 – NICHT VERFÜGBAR -->
+                <article class="card card-off">
+                    <span class="availability-dot" aria-hidden="true"></span>
+                    <p class="card-label">Einzelprodukte</p>
+                    <h3>Airo 2</h3>
+                    <p> + Sateliten ähnliche Luftbilder,<br>
+                        + Sateliten ähnliche Luftvideos,<br>
+                        + Custom Luftaufnahmen  (Bilder / Videos)<br></p>
                     <p class="price">30,00&nbsp;€ <small>Basistarif</small></p>
                     <span class="badge">⛔ Zurzeit Nicht verfügbar</span>
                 </article>
 
-                <!-- Karte 2 – VERFÜGBAR -->
-                <article class="card card-on" style="animation-delay:1920ms;">
+                <!-- Karte 3 – VERFÜGBAR -->
+                <article class="card card-on">
                     <span class="availability-dot" aria-hidden="true"></span>
                     <p class="card-label">Einzelprodukte</p>
-                    <h3>Quick Shots</h3>
-                    <p> + Dronie,<br>
-                        + Rocket,<br>
-                        + 360° Tracking,<br>
-                        + Boomerangs,<br>
-                        + Helix</p>
-                    <p class="price">40,00&nbsp;€ <small>Basistarif</small></p>
+                    <h3>Quick Shot 1 <span class="bestseller-badge">★ Bestseller</span></h3>
+                    <p> + Enthält bestimmte Quickshots
+                        <div style="margin-left: 1rem;">
+                            <p>
+                            - Rocket,<br>
+                            - 360° Tracking / Circle,<br>
+                            - Helix
+                        </p>
+                        </div>
+                    </p>
+                    <p class="price">35,00&nbsp;€ <small>Basistarif</small></p>
                     <a href="#video" style="color: var(--color-accent); font-weight: 500; font-size: 0.9rem; margin-top: 0.25rem; display: inline-block; border-bottom: 1px solid rgba(196, 168, 130, 0.3); transition: border-color var(--transition);">Was sind Quick Shots? →</a>
                     <span class="badge">✓ Verfügbar</span>
                 </article>
 
-                <!-- Karte 3 – VERFÜGBAR -->
-                <article class="card card-on" style="animation-delay:2100ms;">
+                <!-- Karte 4 – VERFÜGBAR -->
+                <article class="card card-on">
+                    <span class="availability-dot" aria-hidden="true"></span>
+                    <p class="card-label">Einzelprodukte</p>
+                    <h3>Quick Shot 2</h3>
+                    <p>+ Enthält alle Quickshots
+                        <div style="margin-left: 1rem;">
+                        <p>- Dronie,<br>
+                            - Rocket,<br>
+                            - 360° Tracking / Circle,<br>
+                            - Boomerangs,<br>
+                            - Helix</p>
+                        </p>
+                        </div>
+                    </p>
+                    <p class="price">45,00&nbsp;€ <small>Basistarif</small></p>
+                    <a href="#video" style="color: var(--color-accent); font-weight: 500; font-size: 0.9rem; margin-top: 0.25rem; display: inline-block; border-bottom: 1px solid rgba(196, 168, 130, 0.3); transition: border-color var(--transition);">Was sind Quick Shots? →</a>
+                    <span class="badge">✓ Verfügbar</span>
+                </article>
+
+                <!-- Karte 5 – VERFÜGBAR -->
+                <article class="card card-on">
                     <span class="availability-dot" aria-hidden="true"></span>
                     <p class="card-label">Bundle</p>
-                    <h3>Imo Fly 360</h3>
-                    <p> + Luftbilder / -Videos,<br>
-                        + Dronie,<br>
-                        + Rocket,<br>
-                        + 360° Tracking / Circle,<br>
-                        + Boomerangs,<br>
-                        + Helix</p>
+                    <h3>Fly 360 <span class="bestseller-badge">★ Bestseller</span></h3>
+                    <p>+ Luftbilder / -Videos,<br>
+                        + Enthält alle Quickshots
+                        <div style="margin-left: 1rem;">
+                        <p>- Dronie,<br>
+                            - Rocket,<br>
+                            - 360° Tracking / Circle,<br>
+                            - Boomerangs,<br>
+                            - Helix</p>
+                        </p>
+                        </div>
+                    </p>
                     <p class="price">55,00&nbsp;€ <small>Basistarif</small></p>
                     <span class="badge badge-on">✓ Verfügbar</span>
                 </article>
@@ -941,12 +1018,10 @@
             <h2 id="video-title" class="animate-on-scroll delay-2">Quick Shots in Aktion</h2>
             <p class="animate-on-scroll delay-3">Hier siehst du, wie die Quick Shots aussehen – perfekt für dynamische Luftaufnahmen.</p>
 
-            <div class="video-wrapper animate-on-scroll delay-4">
-                <video controls preload="metadata">
-                    <source src="assets/video/quick-shots.mp4" type="video/mp4" />
-                    Dein Browser unterstützt dieses Video nicht.
-                </video>
-            </div>
+            <a href="https://terra-1-g.djicdn.com/5f1e9a711a9649479ee9b269af910bd8/37e03134ccd7459ca7f84ee5b632a73d.mp4" target="_blank" rel="noopener noreferrer" class="video-link-btn animate-on-scroll delay-3">
+                <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+                Beispielvideo ansehen
+            </a>
         </div>
     </section>
 
